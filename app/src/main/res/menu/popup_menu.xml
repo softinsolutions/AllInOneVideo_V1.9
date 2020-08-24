@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/option_add_favourite"
+        android:title="@string/pop_favourite_add" />
+
+    <item android:id="@+id/option_remove_favourite"
+        android:title="@string/pop_favourite_remove" />
+
+    <item android:id="@+id/option_share"
+        android:title="@string/menu_share" />
+
+    <item android:id="@+id/option_report"
+        android:title="@string/pop_report" />
+</menu>

@@ -1,0 +1,30 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_fav"
+        android:icon="@drawable/ic_fav"
+        android:title="@string/app_name"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/menu_overflow"
+        android:icon="@drawable/ic_d_more_pop"
+        android:title=""
+        app:showAsAction="always">
+
+        <menu>
+
+            <item
+                android:id="@+id/menu_share"
+                android:title="@string/menu_share"
+                app:showAsAction="ifRoom|withText" />
+
+            <item
+                android:id="@+id/menu_report"
+                android:title="@string/pop_report"
+                app:showAsAction="ifRoom|withText" />
+
+        </menu>
+    </item>
+</menu>

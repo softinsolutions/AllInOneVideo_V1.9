@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "331688991685",
+    "firebase_url": "https://cartoony-27e98.firebaseio.com",
+    "project_id": "cartoony-27e98",
+    "storage_bucket": "cartoony-27e98.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:331688991685:android:33a9437bedc5c6efd289ac",
+        "android_client_info": {
+          "package_name": "com.cartoony.allinonevideo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "331688991685-of0lvqajo2mnc7gmj2gc8u7gcqe7ctja.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeOunFSahP1caKoHddjPQlEJaqwUT5m9Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "331688991685-of0lvqajo2mnc7gmj2gc8u7gcqe7ctja.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
