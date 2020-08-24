@@ -16,7 +16,7 @@
 
 
         <LinearLayout
-            android:id="@+id/latest"
+            android:id="@+id/circleLatest"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -45,7 +45,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/category"
+            android:id="@+id/circleCategory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -74,7 +74,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/all"
+            android:id="@+id/circleAll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -103,7 +103,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/most_view"
+            android:id="@+id/circleRecent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -125,14 +125,14 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:paddingTop="8dp"
-                android:text="Most View"
+                android:text="Recent"
                 android:textColor="@color/abs_txt"
                 android:textSize="12sp" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/About"
+            android:id="@+id/circleFav"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"

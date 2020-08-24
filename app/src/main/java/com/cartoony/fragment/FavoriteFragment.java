@@ -20,6 +20,8 @@ import com.cartoony.util.ItemOffsetDecoration;
 import com.cartoony.allinonevideo.R;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 
 public class FavoriteFragment extends Fragment {
@@ -39,6 +41,7 @@ public class FavoriteFragment extends Fragment {
 
         recyclerView = rootView.findViewById(R.id.rv_video);
         recyclerView.setHasFixedSize(true);
+
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         ItemOffsetDecoration itemDecoration = new ItemOffsetDecoration(requireActivity(), R.dimen.item_offset);
         recyclerView.addItemDecoration(itemDecoration);
@@ -51,6 +54,7 @@ public class FavoriteFragment extends Fragment {
     public void onResume() {
         super.onResume();
         mListItem = databaseHelper.getFavourite();
+        Collections.reverse(mListItem);
         displayData();
     }
 

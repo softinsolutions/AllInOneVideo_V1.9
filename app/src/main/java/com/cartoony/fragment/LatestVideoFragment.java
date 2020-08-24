@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.cartoony.adapter.AllVideoAdapter;
 import com.cartoony.allinonevideo.MainActivity;
@@ -39,6 +40,8 @@ public class LatestVideoFragment extends Fragment {
     public RecyclerView recyclerView;
     AllVideoAdapter allVideoAdapter;
     private ProgressBar progressBar;
+    SwipeRefreshLayout swipeRefreshLayout;
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -49,6 +52,7 @@ public class LatestVideoFragment extends Fragment {
         ((MainActivity) requireActivity()).setToolbarTitle(getString(R.string.menu_latest));
         progressBar = rootView.findViewById(R.id.progressBar);
         recyclerView = rootView.findViewById(R.id.rv_video);
+        swipeRefreshLayout = rootView.findViewById(R.id.latestSwipe);
         recyclerView.setHasFixedSize(true);
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
         recyclerView.setLayoutManager(layoutManager);
@@ -65,14 +69,20 @@ public class LatestVideoFragment extends Fragment {
                 }
             }
         });
+        loadVideo();
+        swipeRefreshLayout.setOnRefreshListener(() -> {
+            loadVideo();
+            swipeRefreshLayout.setRefreshing(false);
+        });
+        return rootView;
+    }
 
+    private void loadVideo() {
         JsonObject jsObj = (JsonObject) new Gson().toJsonTree(new API());
         jsObj.addProperty("method_name", "get_latest_video");
         if (JsonUtils.isNetworkAvailable(requireActivity())) {
             new getLatestVideo(API.toBase64(jsObj.toString())).execute(Constant.API_URL);
-         }
-
-        return rootView;
+        }
     }
 
     @SuppressLint("StaticFieldLeak")
@@ -139,14 +149,14 @@ public class LatestVideoFragment extends Fragment {
 
     private void displayData() {
         if (Constant.SAVE_ADS_NATIVE_ON_OFF.equals("true")) {
-        if (mListItem.size() > 0) {
-            for (int i = 0; i < mListItem.size(); i++) {
-                if (i % Integer.parseInt(Constant.SAVE_NATIVE_CLICK_OTHER) == 0) {
-                    mListItem.add(i, null);
+            if (mListItem.size() > 0) {
+                for (int i = 0; i < mListItem.size(); i++) {
+                    if (i % Integer.parseInt(Constant.SAVE_NATIVE_CLICK_OTHER) == 0) {
+                        mListItem.add(i, null);
+                    }
                 }
+                mListItem.remove(0);
             }
-            mListItem.remove(0);
-        }
         }
         if (getActivity() != null) {
             allVideoAdapter = new AllVideoAdapter(getActivity(), mListItem);

@@ -25,6 +25,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
@@ -92,6 +93,8 @@ public class HomeFragment extends Fragment {
     RelativeLayout lay_cat_rec;
     HomeLatestAdapter allVideoAdapterRecent;
     DatabaseHelperRecent databaseHelperRecent;
+    SwipeRefreshLayout swipeRefreshLayout;
+    LinearLayout circleLatest, circleCategory, circleAll, circleRecent, circleFav;
 
     @Nullable
     @Override
@@ -109,6 +112,12 @@ public class HomeFragment extends Fragment {
         fadingEdgeLayout2 = rootView.findViewById(R.id.fad_shadow2);
         fadingEdgeLayout3 = rootView.findViewById(R.id.fad_shadow3);
         fad_shadow1_rec = rootView.findViewById(R.id.fad_shadow1_rec);
+
+        circleLatest = rootView.findViewById(R.id.circleLatest);
+        circleCategory = rootView.findViewById(R.id.circleCategory);
+        circleAll = rootView.findViewById(R.id.circleAll);
+        circleRecent = rootView.findViewById(R.id.circleRecent);
+        circleFav = rootView.findViewById(R.id.circleFav);
 
         JsonUtils.changeShadowInRtl(requireActivity(), fadingEdgeLayout1);
         JsonUtils.changeShadowInRtl(requireActivity(), fadingEdgeLayout2);
@@ -139,6 +148,8 @@ public class HomeFragment extends Fragment {
         txt_latest_video_no = rootView.findViewById(R.id.txt_latest_video_no);
         txt_all_video_no = rootView.findViewById(R.id.txt_all_video_no);
         txt_cat_video_no = rootView.findViewById(R.id.txt_cat_video_no);
+
+        swipeRefreshLayout = rootView.findViewById(R.id.homeSwipe);
 
         recyclerViewLatestVideo.setHasFixedSize(false);
         recyclerViewLatestVideo.setNestedScrollingEnabled(false);
@@ -219,15 +230,78 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        //absLayout
+        circleLatest.setOnClickListener(view -> {
+                    ((MainActivity) requireActivity()).highLightNavigation(1, getString(R.string.menu_latest));
+                    LatestVideoFragment latestVideoFragment = new LatestVideoFragment();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.hide(HomeFragment.this);
+                    fragmentTransaction.add(R.id.Container, latestVideoFragment, getString(R.string.menu_latest));
+                    fragmentTransaction.addToBackStack(getString(R.string.menu_latest));
+                    fragmentTransaction.commit();
+                    ((MainActivity) requireActivity()).setToolbarTitle(getString(R.string.menu_latest));
+                }
+        );
+
+        circleCategory.setOnClickListener(view -> {
+            ((MainActivity) requireActivity()).highLightNavigation(3, getString(R.string.menu_category));
+            CategoryFragment categoryFragment = new CategoryFragment();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.hide(HomeFragment.this);
+            fragmentTransaction.add(R.id.Container, categoryFragment, getString(R.string.menu_category));
+            fragmentTransaction.addToBackStack(getString(R.string.menu_category));
+            fragmentTransaction.commit();
+            ((MainActivity) requireActivity()).setToolbarTitle(getString(R.string.menu_category));
+        });
+
+        circleAll.setOnClickListener(view -> {
+            ((MainActivity) requireActivity()).highLightNavigation(2, getString(R.string.menu_video));
+            AllVideoFragment allVideoFragment = new AllVideoFragment();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.hide(HomeFragment.this);
+            fragmentTransaction.add(R.id.Container, allVideoFragment, getString(R.string.menu_video));
+            fragmentTransaction.addToBackStack(getString(R.string.menu_video));
+            fragmentTransaction.commit();
+            ((MainActivity) requireActivity()).setToolbarTitle(getString(R.string.menu_video));
+        });
+        circleRecent.setOnClickListener(view -> {
+                    Intent intent_rec = new Intent(requireActivity(), ActivityRecent.class);
+                    startActivity(intent_rec);
+                }
+        );
+        circleFav.setOnClickListener(view -> {
+            ((MainActivity) requireActivity()).highLightNavigation(2, getString(R.string.menu_favorite));
+            FavoriteFragment favoriteFragment = new FavoriteFragment();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.hide(HomeFragment.this);
+            fragmentTransaction.add(R.id.Container, favoriteFragment, getString(R.string.menu_favorite));
+            fragmentTransaction.addToBackStack(getString(R.string.menu_favorite));
+            fragmentTransaction.commit();
+            ((MainActivity) requireActivity()).setToolbarTitle(getString(R.string.menu_favorite));
+        });
+        //absLayout end
+
+
+        swipeRefreshLayout.setOnRefreshListener(() ->
+
+        {
+            loadVideos();
+            swipeRefreshLayout.setRefreshing(false);
+        });
+
+        loadVideos();
+
+        mViewPager.useScale();
+        mViewPager.removeAlpha();
+        return rootView;
+    }
+
+    private void loadVideos() {
         JsonObject jsObj = (JsonObject) new Gson().toJsonTree(new API());
         jsObj.addProperty("method_name", "get_home_video");
         if (JsonUtils.isNetworkAvailable(requireActivity())) {
             new HomeVideo(API.toBase64(jsObj.toString())).execute(Constant.API_URL);
         }
-
-        mViewPager.useScale();
-        mViewPager.removeAlpha();
-        return rootView;
     }
 
     private class CustomViewPagerAdapter extends PagerAdapter {
@@ -341,7 +415,7 @@ public class HomeFragment extends Fragment {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            if(isAdded()){
+            if (isAdded()) {
                 getResources().getString(R.string.app_name);
             }
             mProgressBar.setVisibility(View.GONE);
@@ -350,7 +424,7 @@ public class HomeFragment extends Fragment {
                 showToast(getString(R.string.no_data));
                 mScrollView.setVisibility(View.GONE);
             } else {
-
+                mSliderList.clear();
                 try {
                     JSONObject mainJson = new JSONObject(result);
                     JSONObject mainJsonob = mainJson.getJSONObject(Constant.LATEST_ARRAY_NAME);
@@ -444,6 +518,7 @@ public class HomeFragment extends Fragment {
                 setHomeVideo();
             }
         }
+
     }
 
     private void setHomeVideo() {

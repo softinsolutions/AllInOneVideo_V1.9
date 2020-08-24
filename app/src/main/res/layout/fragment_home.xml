@@ -14,351 +14,356 @@
         android:layout_centerVertical="true"
         android:visibility="gone" />
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/scrollView"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/homeSwipe"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="none">
+        android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/lay_main"
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scrollView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:orientation="vertical">
-
-            <com.cartoony.util.EnchantedViewPager
-                android:id="@+id/viewPager"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginTop="5dp" />
-
-            <me.relex.circleindicator.CircleIndicator
-                android:id="@+id/indicator_unselected_background"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_gravity="center"
-                app:ci_drawable="@drawable/selecteditem_dot"
-                app:ci_drawable_unselected="@drawable/nonselecteditem_dot"
-                app:ci_height="6dp"
-                app:ci_width="6dp" />
-
-            <include layout="@layout/abs_playlists" />
+            android:layout_height="match_parent"
+            android:scrollbars="none">
 
             <LinearLayout
-                android:id="@+id/ad_view"
+                android:id="@+id/lay_main"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="3dp"
                 android:orientation="vertical">
 
+                <com.cartoony.util.EnchantedViewPager
+                    android:id="@+id/viewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="5dp" />
+
+                <me.relex.circleindicator.CircleIndicator
+                    android:id="@+id/indicator_unselected_background"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    app:ci_drawable="@drawable/selecteditem_dot"
+                    app:ci_drawable_unselected="@drawable/nonselecteditem_dot"
+                    app:ci_height="6dp"
+                    app:ci_width="6dp" />
+
+                <include layout="@layout/abs_playlists" />
+
+                <LinearLayout
+                    android:id="@+id/ad_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/lay_cat_rec"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="8dp">
+
+                    <View
+                        android:id="@+id/line_rec_rec"
+                        android:layout_width="4dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/home_line" />
+
+                    <LinearLayout
+                        android:id="@+id/lay_3_rec"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="13dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txt_cat_video_rec"
+                            fontPath="fonts/Montserrat-SemiBold_0.otf"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/recent_video"
+                            android:textColor="@color/home_text_title"
+                            android:textSize="15sp"
+                            tools:ignore="MissingPrefix" />
+
+                        <TextView
+                            android:id="@+id/txt_cat_video_no_rec"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="1dp"
+                            android:text=""
+                            android:textColor="@color/home_text_sub_title"
+                            android:textSize="12sp"
+                            android:visibility="gone" />
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btn_cat_video_rec"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="3dp"
+                        android:background="@drawable/more_button"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:text="@string/more_btn"
+                        android:textColor="@color/more_btn_text" />
+                </RelativeLayout>
+
+                <com.bosphere.fadingedgelayout.FadingEdgeLayout
+                    android:id="@+id/fad_shadow1_rec"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="8dp"
+                    app:fel_edge="right"
+                    app:fel_size_right="@dimen/shadow_size">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_cat_video_rec"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </com.bosphere.fadingedgelayout.FadingEdgeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/lay_cat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="8dp">
+
+                    <View
+                        android:id="@+id/line_rec"
+                        android:layout_width="4dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/home_line" />
+
+                    <LinearLayout
+                        android:id="@+id/lay_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="13dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txt_cat_video"
+                            fontPath="fonts/Montserrat-SemiBold_0.otf"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/latest_category"
+                            android:textColor="@color/home_text_title"
+                            android:textSize="15sp"
+                            tools:ignore="MissingPrefix" />
+
+                        <TextView
+                            android:id="@+id/txt_cat_video_no"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="1dp"
+                            android:text=""
+                            android:textColor="@color/home_text_sub_title"
+                            android:textSize="12sp"
+                            android:visibility="gone" />
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btn_cat_video"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="3dp"
+                        android:background="@drawable/more_button"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:text="@string/more_btn"
+                        android:textColor="@color/more_btn_text" />
+                </RelativeLayout>
+
+                <com.bosphere.fadingedgelayout.FadingEdgeLayout
+                    android:id="@+id/fad_shadow1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="8dp"
+                    app:fel_edge="right"
+                    app:fel_size_right="@dimen/shadow_size">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_cat_video"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </com.bosphere.fadingedgelayout.FadingEdgeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/lay_latest"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="8dp">
+
+                    <View
+                        android:id="@+id/line_rec2"
+                        android:layout_width="4dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/home_line" />
+
+                    <LinearLayout
+                        android:id="@+id/lay_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="13dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txt_latest_video"
+                            fontPath="fonts/Montserrat-SemiBold_0.otf"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/latest_video"
+                            android:textColor="@color/home_text_title"
+                            android:textSize="15sp"
+                            tools:ignore="MissingPrefix" />
+
+                        <TextView
+                            android:id="@+id/txt_latest_video_no"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textColor="@color/home_text_sub_title"
+                            android:textSize="12sp"
+                            android:visibility="gone" />
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btn_latest_video"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="3dp"
+                        android:background="@drawable/more_button"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:text="@string/more_btn"
+                        android:textColor="@color/more_btn_text" />
+                </RelativeLayout>
+
+                <com.bosphere.fadingedgelayout.FadingEdgeLayout
+                    android:id="@+id/fad_shadow2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="8dp"
+                    app:fel_edge="right"
+                    app:fel_size_right="@dimen/shadow_size">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_latest_video"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </com.bosphere.fadingedgelayout.FadingEdgeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/lay_all"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="8dp">
+
+                    <View
+                        android:id="@+id/line_rec3"
+                        android:layout_width="4dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/home_line" />
+
+                    <LinearLayout
+                        android:id="@+id/lay_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="13dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txt_all_video"
+                            fontPath="fonts/Montserrat-SemiBold_0.otf"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/all_video"
+                            android:textColor="@color/home_text_title"
+                            android:textSize="15sp"
+                            tools:ignore="MissingPrefix" />
+
+                        <TextView
+                            android:id="@+id/txt_all_video_no"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textColor="@color/home_text_sub_title"
+                            android:textSize="12sp"
+                            android:visibility="gone" />
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btn_all_video"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="3dp"
+                        android:background="@drawable/more_button"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:text="@string/more_btn"
+                        android:textColor="@color/more_btn_text" />
+                </RelativeLayout>
+
+                <com.bosphere.fadingedgelayout.FadingEdgeLayout
+                    android:id="@+id/fad_shadow3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="10dp"
+                    app:fel_edge="right"
+                    app:fel_size_right="@dimen/shadow_size">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_all_video"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </com.bosphere.fadingedgelayout.FadingEdgeLayout>
+
+
             </LinearLayout>
-
-            <RelativeLayout
-                android:id="@+id/lay_cat_rec"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="8dp">
-
-                <View
-                    android:id="@+id/line_rec_rec"
-                    android:layout_width="4dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:background="@drawable/home_line" />
-
-                <LinearLayout
-                    android:id="@+id/lay_3_rec"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="13dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/txt_cat_video_rec"
-                        fontPath="fonts/Montserrat-SemiBold_0.otf"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/recent_video"
-                        android:textColor="@color/home_text_title"
-                        android:textSize="15sp"
-                        tools:ignore="MissingPrefix" />
-
-                    <TextView
-                        android:id="@+id/txt_cat_video_no_rec"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="1dp"
-                        android:text=""
-                        android:textColor="@color/home_text_sub_title"
-                        android:textSize="12sp"
-                        android:visibility="gone" />
-                </LinearLayout>
-
-                <Button
-                    android:id="@+id/btn_cat_video_rec"
-                    style="?android:attr/buttonBarButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginTop="3dp"
-                    android:background="@drawable/more_button"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
-                    android:text="@string/more_btn"
-                    android:textColor="@color/more_btn_text" />
-            </RelativeLayout>
-
-            <com.bosphere.fadingedgelayout.FadingEdgeLayout
-                android:id="@+id/fad_shadow1_rec"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="8dp"
-                app:fel_edge="right"
-                app:fel_size_right="@dimen/shadow_size">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_cat_video_rec"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </com.bosphere.fadingedgelayout.FadingEdgeLayout>
-
-            <RelativeLayout
-                android:id="@+id/lay_cat"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="8dp">
-
-                <View
-                    android:id="@+id/line_rec"
-                    android:layout_width="4dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:background="@drawable/home_line" />
-
-                <LinearLayout
-                    android:id="@+id/lay_3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="13dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/txt_cat_video"
-                        fontPath="fonts/Montserrat-SemiBold_0.otf"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/latest_category"
-                        android:textColor="@color/home_text_title"
-                        android:textSize="15sp"
-                        tools:ignore="MissingPrefix" />
-
-                    <TextView
-                        android:id="@+id/txt_cat_video_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="1dp"
-                        android:text=""
-                        android:textColor="@color/home_text_sub_title"
-                        android:textSize="12sp"
-                        android:visibility="gone" />
-                </LinearLayout>
-
-                <Button
-                    android:id="@+id/btn_cat_video"
-                    style="?android:attr/buttonBarButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginTop="3dp"
-                    android:background="@drawable/more_button"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
-                    android:text="@string/more_btn"
-                    android:textColor="@color/more_btn_text" />
-            </RelativeLayout>
-
-            <com.bosphere.fadingedgelayout.FadingEdgeLayout
-                android:id="@+id/fad_shadow1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="8dp"
-                app:fel_edge="right"
-                app:fel_size_right="@dimen/shadow_size">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_cat_video"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </com.bosphere.fadingedgelayout.FadingEdgeLayout>
-
-            <RelativeLayout
-                android:id="@+id/lay_latest"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="8dp">
-
-                <View
-                    android:id="@+id/line_rec2"
-                    android:layout_width="4dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:background="@drawable/home_line" />
-
-                <LinearLayout
-                    android:id="@+id/lay_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="13dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/txt_latest_video"
-                        fontPath="fonts/Montserrat-SemiBold_0.otf"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/latest_video"
-                        android:textColor="@color/home_text_title"
-                        android:textSize="15sp"
-                        tools:ignore="MissingPrefix" />
-
-                    <TextView
-                        android:id="@+id/txt_latest_video_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:textColor="@color/home_text_sub_title"
-                        android:textSize="12sp"
-                        android:visibility="gone" />
-                </LinearLayout>
-
-                <Button
-                    android:id="@+id/btn_latest_video"
-                    style="?android:attr/buttonBarButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginTop="3dp"
-                    android:background="@drawable/more_button"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
-                    android:text="@string/more_btn"
-                    android:textColor="@color/more_btn_text" />
-            </RelativeLayout>
-
-            <com.bosphere.fadingedgelayout.FadingEdgeLayout
-                android:id="@+id/fad_shadow2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="8dp"
-                app:fel_edge="right"
-                app:fel_size_right="@dimen/shadow_size">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_latest_video"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </com.bosphere.fadingedgelayout.FadingEdgeLayout>
-
-            <RelativeLayout
-                android:id="@+id/lay_all"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="8dp">
-
-                <View
-                    android:id="@+id/line_rec3"
-                    android:layout_width="4dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:background="@drawable/home_line" />
-
-                <LinearLayout
-                    android:id="@+id/lay_2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="13dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/txt_all_video"
-                        fontPath="fonts/Montserrat-SemiBold_0.otf"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/all_video"
-                        android:textColor="@color/home_text_title"
-                        android:textSize="15sp"
-                        tools:ignore="MissingPrefix" />
-
-                    <TextView
-                        android:id="@+id/txt_all_video_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:textColor="@color/home_text_sub_title"
-                        android:textSize="12sp"
-                        android:visibility="gone" />
-                </LinearLayout>
-
-                <Button
-                    android:id="@+id/btn_all_video"
-                    style="?android:attr/buttonBarButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginTop="3dp"
-                    android:background="@drawable/more_button"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
-                    android:text="@string/more_btn"
-                    android:textColor="@color/more_btn_text" />
-            </RelativeLayout>
-
-            <com.bosphere.fadingedgelayout.FadingEdgeLayout
-                android:id="@+id/fad_shadow3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="10dp"
-                app:fel_edge="right"
-                app:fel_size_right="@dimen/shadow_size">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_all_video"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </com.bosphere.fadingedgelayout.FadingEdgeLayout>
-
-
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
-
+        </androidx.core.widget.NestedScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </RelativeLayout>

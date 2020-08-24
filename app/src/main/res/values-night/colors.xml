@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#000000</color>
     <color name="colorPrimaryDark">#232327</color>
-    <color name="colorAccent">#FFFFFF</color>
+    <color name="colorAccent">#D34675</color>
 
     <color name="background">#000000</color>
     <color name="card_view_white">#212529</color>
@@ -10,7 +10,7 @@
     <color name="navigation_default">#ffffff</color>
     <color name="navigation_checked">#ffffff</color>
     <color name="navigation_item_bg_default">#212529</color>
-    <color name="navigation_item_bg_checked">#809733EE</color>
+    <color name="navigation_item_bg_checked">#E91E63</color>
     <color name="navigation_bg">#212529</color>
 
     <color name="home_text_title">#FFFFFF</color>
@@ -58,11 +58,11 @@
     <color name="profile_view_all">#ffffff</color>
     <color name="setting_line">#FFFFFF</color>
     <color name="setting_title">#FFFFFF</color>
-    <color name="switch_activated">#9733EE</color>
+    <color name="switch_activated">#E91E63</color>
     <color name="switch_normal">#888D9F</color>
     <color name="switch_thumbTint">#ffffff</color>
     <color name="switch_trackTint">#ff0083</color>
-    <color name="select_dot">#E91E63</color>
+    <color name="select_dot">#FF9800</color>
     <color name="non_select_dot">#A5A5A5</color>
     <color name="report_title">#ffffff</color>
     <color name="report_edit_bg">#212529</color>
@@ -84,4 +84,6 @@
     <color name="img_text">#FFFFFF</color>
     <color name="abs_txt">#A5A5A5</color>
     <color name="abs_bg">#000000</color>
+    <color name="signup_login_bg">#E91E63</color>
+
 </resources>
