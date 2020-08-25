@@ -95,6 +95,7 @@ public class HomeFragment extends Fragment {
     DatabaseHelperRecent databaseHelperRecent;
     SwipeRefreshLayout swipeRefreshLayout;
     LinearLayout circleLatest, circleCategory, circleAll, circleRecent, circleFav;
+    boolean isRefresh = false;
 
     @Nullable
     @Override
@@ -285,6 +286,8 @@ public class HomeFragment extends Fragment {
         swipeRefreshLayout.setOnRefreshListener(() ->
 
         {
+
+            isRefresh = true;
             loadVideos();
             swipeRefreshLayout.setRefreshing(false);
         });
@@ -387,7 +390,7 @@ public class HomeFragment extends Fragment {
                     Log.e("TAG", "auto scroll pager error.", e);
                 }
             }
-        }, 2500);
+        }, 3000);
     }
 
     @SuppressLint("StaticFieldLeak")
@@ -425,6 +428,10 @@ public class HomeFragment extends Fragment {
                 mScrollView.setVisibility(View.GONE);
             } else {
                 mSliderList.clear();
+                mLatestList.clear();
+                mAllList.clear();
+                mCatList.clear();
+
                 try {
                     JSONObject mainJson = new JSONObject(result);
                     JSONObject mainJsonob = mainJson.getJSONObject(Constant.LATEST_ARRAY_NAME);
@@ -535,7 +542,7 @@ public class HomeFragment extends Fragment {
             }
         }
 
-        if (!mSliderList.isEmpty()) {
+        if (!mSliderList.isEmpty() && !isRefresh) {
             mAdapter = new CustomViewPagerAdapter();
             mViewPager.setAdapter(mAdapter);
             circleIndicator.setViewPager(mViewPager);

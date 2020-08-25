@@ -115,6 +115,7 @@ public class LatestVideoFragment extends Fragment {
             if (null == result || result.length() == 0) {
                 showToast(getString(R.string.no_data));
             } else {
+                mListItem.clear();
                 try {
                     JSONObject mainJson = new JSONObject(result);
                     JSONArray jsonArray = mainJson.getJSONArray(Constant.LATEST_ARRAY_NAME);

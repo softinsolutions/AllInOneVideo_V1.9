@@ -43,7 +43,7 @@
     <color name="login_image_bg">#ffffff</color>
     <color name="login_edit_text">#ffffff</color>
     <color name="login_input_box_line">#ffffff</color>
-    <color name="check_box_bg">#9733EE</color>
+    <color name="check_box_bg">#FF9800</color>
     <color name="skip_btn_text">#9733EE</color>
     <color name="login_forgot_text">#ffffff</color>
     <color name="login_create_acc_text">#ffffff</color>
